@@ -46,6 +46,7 @@ void loop() {
       digitalWrite(CAM1, HIGH);
       out.concat("ON    Cam 2: ");
     } else {
+      digitalWrite(CAM2, LOW);
       out.concat("OFF   Cam 2: ");
     }
   }
@@ -54,6 +55,7 @@ void loop() {
      digitalWrite(CAM2, HIGH);
       out.concat("ON\r");
     } else {
+      digitalWrite(CAM2, LOW);
       out.concat("OFF\r");
     }
   }
