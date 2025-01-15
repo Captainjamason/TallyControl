@@ -1,9 +1,13 @@
+//  TallyControl
+//  Developed for RCC
+//  JPD - 2025
+
 // Library Includes
 #include <BMDSDIControl.h>
 
 // Define our  outward tally pins.
-#define CAM1 6
-#define CAM2 7
+#define CAM1 7
+#define CAM2 6
 
 // BMD Shield i2c address and class init.
 const int shieldAddress = 0x6E;
@@ -18,14 +22,17 @@ String out;
 void setup() {
   // Open our debug serial port.
   Serial.begin(9600);
-  
+
+  // Begin tally control with the shield.
   sdiTallyControl.begin();
   sdiTallyControl.setOverride(true);
 
+  // Set pinouts.
   pinMode(CAM1, OUTPUT);
   pinMode(CAM2, OUTPUT);
 }
 
+// checkDebug function, utilized for Serial printout. 
 bool checkDebug(int num) {
   if(Serial.available()) {
     char receivedChar = Serial.read();
@@ -46,7 +53,7 @@ void loop() {
       digitalWrite(CAM1, HIGH);
       out.concat("ON    Cam 2: ");
     } else {
-      digitalWrite(CAM2, LOW);
+      digitalWrite(CAM1, LOW);
       out.concat("OFF   Cam 2: ");
     }
   }
